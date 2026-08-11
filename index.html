@@ -502,6 +502,33 @@
     line-height: 1.6;
   }
 
+  .results-jump-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-deep);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    padding: 6px 0;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 150ms ease, color 150ms ease;
+  }
+  .results-jump-link::after {
+    content: '↓';
+    font-size: 15px;
+    transition: transform 150ms ease;
+  }
+  .results-jump-link:hover {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+  .results-jump-link:hover::after {
+    transform: translateY(2px);
+  }
+
   @media (max-width: 560px) {
     .results {
       padding: 40px 24px 40px;
@@ -806,7 +833,7 @@
       margin: 0.5in;
     }
     body { background: white; }
-    .hero, .assessment, footer, .progress, .cta, .cta-email, .reset-row, .share-hint, .ctas {
+    .hero, .assessment, footer, .progress, .cta, .cta-email, .reset-row, .share-hint, .ctas, .results-jump-link {
       display: none !important;
     }
     main {
@@ -1057,7 +1084,7 @@
 
   <!-- ================= RESULTS ================= -->
   <section class="results" id="results" aria-live="polite">
-    <div class="results-eyebrow">Your readiness pulse</div>
+    <div class="results-eyebrow">Your PCM readiness</div>
 
     <div class="results-score-block">
       <div>
@@ -1067,6 +1094,7 @@
       <div>
         <h2 class="results-status" id="results-status">…</h2>
         <p class="results-interpretation" id="results-interpretation">…</p>
+        <a class="results-jump-link" href="#pivot-fit">Talk to Pivot about your readiness</a>
       </div>
     </div>
 
@@ -1173,27 +1201,27 @@
   function getStatus(avg) {
     if (avg >= 4.5) return {
       status: "Launch-ready",
-      interpretation: "Strong foundations across every condition. You're positioned for a successful launch. Focus on maintaining sponsor visibility and protecting your rollout timeline.",
+      interpretation: "Your organization is ready for PCM certification. Foundations are strong across every condition, and Pivot's rollout process is designed to preserve that readiness through launch. Focus on maintaining sponsor visibility as you move forward with us.",
       positioning: "You have the conditions in place for a successful launch. PCM is built for organizations like yours: evidence-based, structured for sustainable adoption, and designed to fit real operational constraints. A conversation with our team is the fastest path to a certification timeline that matches your readiness."
     };
     if (avg >= 4.0) return {
       status: "Launch-ready with focus",
-      interpretation: "You have the conditions in place to launch. Review any conditions scored 3 or below; those are where early energy should go before certification begins.",
+      interpretation: "Your organization is ready for PCM, with a few conditions worth tightening as you go. Pivot's onboarding is designed to help customers close small gaps like yours while certification rolls out. You don't need everything perfect before you certify with us.",
       positioning: "You're ready to launch, with a few conditions worth tightening as you go. PCM's structured approach and Pivot's onboarding support are designed to help organizations close small gaps like yours while certification rolls out. You don't need to have everything perfect before you start."
     };
     if (avg >= 3.0) return {
       status: "Launch with supports",
-      interpretation: "You're close. The lowest-scoring conditions below are where to focus in the next 60 days. A conversation with Pivot is well-timed here. Bring these results to it.",
+      interpretation: "Your organization is close to being ready for PCM certification. The lowest-scoring conditions below are exactly the kind Pivot's onboarding process helps customers close during rollout. A conversation with our team is well-timed here; bring these results to it.",
       positioning: "Your gaps aren't disqualifying. They're the kind of conditions PCM customers commonly work through with support during rollout. A conversation with our team can help you map the sequencing: what to shore up before certification, what to build in parallel, and what a realistic timeline looks like for an organization at your stage."
     };
     if (avg >= 2.0) return {
       status: "Not launch-ready yet",
-      interpretation: "Several conditions need attention before launching. Push your launch date back if needed; the cost of launching too early is much higher than the cost of a delay.",
+      interpretation: "Several foundational conditions need attention before PCM certification will stick. Push your launch date back if needed; the cost of certifying too early is much higher than the cost of a delay. Pivot's team can help you sequence what to address first.",
       positioning: "Several foundational conditions need attention before certification will stick. Getting sponsorship, ownership, and infrastructure right first will make the training investment pay off. Our team is happy to share what other organizations at your stage have done to get ready. No commitment required."
     };
     return {
       status: "Pre-launch foundations needed",
-      interpretation: "Foundational conditions aren't yet in place. Focus on sponsorship, ownership, and infrastructure before committing to a certification timeline.",
+      interpretation: "Foundational conditions aren't yet in place for PCM certification to succeed. Focus on sponsorship, ownership, and infrastructure before committing to a certification timeline. Pivot is happy to be a resource for that groundwork before training enters the picture.",
       positioning: "Foundational conditions aren't yet in place. Certification won't stick until sponsorship, ownership, and basic infrastructure are established. That's a change-management sequencing question, not a training question, and we're happy to be a resource for that groundwork without turning it into a sales conversation."
     };
   }
